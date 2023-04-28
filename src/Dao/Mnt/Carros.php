@@ -68,7 +68,7 @@ class Carros extends Table{
         `PlacaCarro` = :PlacaCarro,
         `modelo` = :modelo,
         `añoCarro` = :añoCarro>
-        WHERE `binCarro` = :id}>;";
+        WHERE `id` = :id}>;";
 
         return self::executeNonQuery(
             $upd_sql,
@@ -77,7 +77,7 @@ class Carros extends Table{
                 "PlacaCarro" => $placaCarro ,
                 "modelo" => $modeloCarro ,
                 "añoCarro" => $añoCarro,
-                "binCarro" => $bin
+                "id" => $id
             )
             );
     }
