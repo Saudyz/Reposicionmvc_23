@@ -82,7 +82,7 @@ class Carro extends PublicController{
         if(isset($_POST["bin"])){
             if(\Utilities\Validators::IsEmpty($_POST["bin"])){
                 $this->viewData["has_errors"] = true;
-                $this->viewData["bin_error"] = "El bin no puede estar vacio!";
+                $this->viewData["general_error"] = "El bin no puede estar vacio!";
             }
         } else {
             throw new Exception("bin not present in form");
@@ -91,7 +91,7 @@ class Carro extends PublicController{
         if(isset($_POST["placaCarro"])){
             if(\Utilities\Validators::IsEmpty($_POST["placaCarro"])){
                 $this->viewData["has_errors"] = true;
-                $this->viewData["placaCarro_error"] = "LA placa no puede estar vacia!";
+                $this->viewData["general_error"] = "LA placa no puede estar vacia!";
             }
         } else {
             throw new Exception("placaCarro not present in form");
@@ -100,7 +100,7 @@ class Carro extends PublicController{
         if(isset($_POST["modeloCarro"])){
             if(\Utilities\Validators::IsEmpty($_POST["modeloCarro"])){
                 $this->viewData["has_errors"] = true;
-                $this->viewData["modeloCarro_error"] = "Modelo de carro no puede estar vacio!";
+                $this->viewData["general_error"] = "Modelo de carro no puede estar vacio!";
             }
         } else {
             throw new Exception("modeloCarro not present in form");
@@ -109,10 +109,10 @@ class Carro extends PublicController{
         if(isset($_POST["anoCarro"])){
             if(\Utilities\Validators::IsEmpty($_POST["añoCarro"])){
                 $this->viewData["has_errors"] = true;
-                $this->viewData["anoCarro_error"] = "El año de carro no puede estar vacio!";
+                $this->viewData["general_error"] = "El año de carro no puede estar vacio!";
             }
         } else {
-            throw new Exception("modeloCarro not present in form");
+            throw new Exception("anoCarro not present in form");
         }
         
         if(isset($_POST["id"])){
@@ -125,14 +125,10 @@ class Carro extends PublicController{
         }else {
             throw new Exception("id not present in form");
         }
-        $this->viewData["bin"] = $_POST["bin"];
+            $this->viewData["bin"] = $_POST["bin"];
             $this->viewData["placaCarro"] = $_POST["placaCarro"];
             $this->viewData["modeloCarro"] = $_POST["modeloCarro"];
 		    $this->viewData["anoCarro"] = $_POST["anoCarro"];
-        if($this->viewData["mode"]!=="DEL"){
-            $this->viewData["modeloCarro"] = $_POST["modeloCarro"];
-            
-        }
     }
     private function executeAction(){
         switch($this->viewData["mode"]){
@@ -192,7 +188,12 @@ class Carro extends PublicController{
             }
             //$this->viewData["catnom"] = $tmpCategorias["catnom"];
             //$this->viewData["catest"] = $tmpCategorias["catest"];
-          
+            \Utilities\ArrUtils::mergeFullArrayTo($tmpCars, $this->viewData);
+            $this->viewData["modedsc"] = sprintf(
+            $this->modes[$this->viewData["mode"]],
+            $this->viewData["placaCarro"],
+            $this->viewData["id"]
+            );
             if(in_array($this->viewData["mode"], array("DSP","DEL"))){
                 $this->viewData["readonly"] = "readonly";
             }

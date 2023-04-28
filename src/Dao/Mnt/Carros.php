@@ -4,12 +4,12 @@ namespace Dao\Mnt;
 use Dao\Table;
 
 /*  CREATE TABLE `nw202301`.`Carros` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `bin` INT NULL,
-    `placaCarro` VARCHAR(45) NULL,
-    `modeloCarro` VARCHAR(45) NULL,
-    `anoCarro` VARCHAR(45) NULL,
-    PRIMARY KEY (`id`));
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `bin` VARCHAR(45),
+  `placaCarro` VARCHAR(45) NULL,
+  `modeloCarro` VARCHAR(45) NULL,
+  `anoCarro` int Default NULL,
+  PRIMARY KEY (`id`));
  */
 
 class Carros extends Table{
@@ -25,30 +25,30 @@ class Carros extends Table{
     }
 
     public static function insert(
-        int    $bin,
-        string $placaCarro,
-        string $modeloCarro,
-        string $anoCarro,
+        string   $bin,
+        string   $placaCarro,
+        string   $modeloCarro,
+        string   $anoCarro,
     ){
         $ins_sql = "INSERT INTO `Carros`
-        (`binCarro`,
+        (`bin`,
         `PlacaCarro`,
-        `modelo`,
+        `modeloCarro`,
         `anoCarro`)
         
         VALUES
         (
-        :binCarro,
+        :bin,
         :PlacaCarro,
-        :modelo,
+        :modeloCarro,
         :anoCarro);";
 
             return self::executeNonQuery(
                 $ins_sql,
                 array(
-                    "binCarro" => $bin,
+                    "bin" => $bin,
                     "PlacaCarro" => $placaCarro ,
-                    "modelo" => $modeloCarro ,
+                    "modeloCarro" => $modeloCarro ,
                     "añoCarro" => $anoCarro
                 )
             );
@@ -64,20 +64,20 @@ class Carros extends Table{
     ){
         $upd_sql = "UPDATE `Carros`
         SET
-        `binCarro` = :binCarro,
+        `bin` = :bin,
         `PlacaCarro` = :PlacaCarro,
-        `modelo` = :modelo,
+        `modeloCarro` = :modeloCarro,
         `anoCarro` = :anoCarro>
-        WHERE `binCarro` = :id}>;";
+        WHERE `id` = :id}>;";
 
         return self::executeNonQuery(
             $upd_sql,
             array(
-                "binCarro" => $bin,
+                "bin" => $bin,
                 "PlacaCarro" => $placaCarro ,
                 "modelo" => $modeloCarro ,
                 "anoCarro" => $anoCarro,
-                "binCarro" => $id
+                "id" => $id
             )
             );
     }
@@ -85,7 +85,7 @@ class Carros extends Table{
     public static function delete(
         string $id
     ){
-        $del_sql = "SELECT from Carros where id=:id;";
+        $del_sql = "DELETE from Carros where id=:id;";
 
         return self::executeNonQuery(
             $del_sql,

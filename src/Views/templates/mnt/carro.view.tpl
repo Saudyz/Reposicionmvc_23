@@ -13,7 +13,7 @@
     </section>
 
     <section class="row">
-      <label for="bin" class="col-4">Placa</label>
+      <label for="bin" class="col-4">Bin</label>
       <input type="text" {{readonly}} name="bin" value="{{bin}}" maxlength="45" placeholder="Placa"/>
       {{if bin_error}}
         <span class="error col-12">{{bin_error}}</span>
@@ -37,7 +37,7 @@
     </section>
 
     <section class="row">
-      <label for="anoCarro" class="col-4">Placa</label>
+      <label for="anoCarro" class="col-4">A;o Del Carro</label>
       <input type="text" {{readonly}} name="anoCarro" value="{{anoCarro}}" maxlength="45" placeholder="Placa"/>
       {{if anoCarro_error}}
         <span class="error col-12">{{anoCarro_error}}</span>
