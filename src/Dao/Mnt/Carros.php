@@ -8,7 +8,7 @@ use Dao\Table;
     `bin` INT NULL,
     `placaCarro` VARCHAR(45) NULL,
     `modeloCarro` VARCHAR(45) NULL,
-    `añoCarro` VARCHAR(45) NULL,
+    `anoCarro` VARCHAR(45) NULL,
     PRIMARY KEY (`id`));
  */
 
@@ -28,20 +28,20 @@ class Carros extends Table{
         int    $bin,
         string $placaCarro,
         string $modeloCarro,
-        string $añoCarro,
+        string $anoCarro,
     ){
         $ins_sql = "INSERT INTO `Carros`
         (`binCarro`,
         `PlacaCarro`,
         `modelo`,
-        `añoCarro`)
+        `anoCarro`)
         
         VALUES
         (
         :binCarro,
         :PlacaCarro,
         :modelo,
-        :añoCarro);";
+        :anoCarro);";
 
             return self::executeNonQuery(
                 $ins_sql,
@@ -49,7 +49,7 @@ class Carros extends Table{
                     "binCarro" => $bin,
                     "PlacaCarro" => $placaCarro ,
                     "modelo" => $modeloCarro ,
-                    "añoCarro" => $añoCarro
+                    "añoCarro" => $anoCarro
                 )
             );
     }
@@ -58,7 +58,7 @@ class Carros extends Table{
         int    $bin,
         string $placaCarro,
         string $modeloCarro,
-        string $añoCarro,
+        string $anoCarro,
         int    $id
 
     ){
@@ -67,8 +67,8 @@ class Carros extends Table{
         `binCarro` = :binCarro,
         `PlacaCarro` = :PlacaCarro,
         `modelo` = :modelo,
-        `añoCarro` = :añoCarro>
-        WHERE `id` = :id}>;";
+        `anoCarro` = :anoCarro>
+        WHERE `binCarro` = :id}>;";
 
         return self::executeNonQuery(
             $upd_sql,
@@ -76,8 +76,8 @@ class Carros extends Table{
                 "binCarro" => $bin,
                 "PlacaCarro" => $placaCarro ,
                 "modelo" => $modeloCarro ,
-                "añoCarro" => $añoCarro,
-                "id" => $id
+                "anoCarro" => $anoCarro,
+                "binCarro" => $id
             )
             );
     }
@@ -94,5 +94,6 @@ class Carros extends Table{
     }
 
 }
+
 
 ?>

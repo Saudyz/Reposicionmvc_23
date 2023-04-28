@@ -16,7 +16,7 @@
 // Sección de imports
 // ---------------------------------------------------------------
 use Controllers\PublicController;
-use Dao\Mnt\Productos as DaoProductos;
+//use Dao\Mnt\Carros as Dao\Carro;
 use Views\Renderer;
 
 /**
