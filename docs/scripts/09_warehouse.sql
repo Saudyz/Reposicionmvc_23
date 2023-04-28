@@ -1,0 +1,9 @@
+CREATE TABLE warehouse (
+    warehouse_id INT AUTO_INCREMENT PRIMARY KEY,
+    warehouse_name VARCHAR(255) NOT NULL,
+    addres VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    stat VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
